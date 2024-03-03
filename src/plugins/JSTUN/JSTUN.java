@@ -11,7 +11,7 @@ import java.util.HashSet;
 import java.util.Vector;
 import java.util.Random;
 
-import org.tanukisoftware.wrapper.WrapperManager;
+// import org.tanukisoftware.wrapper.WrapperManager;
 
 import plugins.JSTUN.de.javawi.jstun.test.DiscoveryInfo;
 import plugins.JSTUN.de.javawi.jstun.test.DiscoveryTest_;
@@ -35,6 +35,7 @@ public class JSTUN implements FredPlugin, FredPluginIPDetector, FredPluginThread
 
 	// From http://code.google.com/p/natvpn/source/browse/trunk/stun_server_list
 	// TODO: Google STUN servers run on port 19302 instead of 3478. Is it worth supporting them?
+	// FIXME: This repo is dead. Maybe use this list: https://gist.github.com/mondain/b0ec1cf5f60ae726202e
 	static String[] publicSTUNServers = new String[] {
 			"stun.voipbuster.com",
 			"stun.ekiga.net",
@@ -64,7 +65,7 @@ public class JSTUN implements FredPlugin, FredPluginIPDetector, FredPluginThread
 		for(int i=0;i<publicSTUNServers.length;i++)
 			v.add(publicSTUNServers[i]);
 		while(!v.isEmpty()) {
-			if(WrapperManager.hasShutdownHookBeenTriggered()) return null;
+			// if(WrapperManager.hasShutdownHookBeenTriggered()) return null;
 			String stunServer = (String) v.remove(r.nextInt(v.size()));
 			try {
 				DiscoveryTest_ test = new DiscoveryTest_(iaddress, stunServer, 3478);
